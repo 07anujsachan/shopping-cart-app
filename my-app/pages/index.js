@@ -60,8 +60,12 @@ const App = () => {
 
   const deleteCartItem = (id) => {
     setCartItems((prevCartItems) =>
-      prevCartItems.filter((item) => item.id !== id)
-    );
+    prevCartItems.map((item) =>
+      item?.id === id
+        ? { ...item, quantity: item?.quantity > 1 ? item?.quantity - 1 : 0 }
+        : item
+    ).filter((item) => item?.quantity > 0)
+  );
   };
 
   const handleCartClose = () => {
