@@ -1,11 +1,13 @@
 import React from "react";
-import data from "./data.json";
+
+
 
 export const Shopping = ({
   activeSize,
   cartItems,
   handleAddItemsToCart,
   activeFilter,
+  data,
 }) => {
   const handleProducts = () => {
     let displayedProducts = [...data.products];

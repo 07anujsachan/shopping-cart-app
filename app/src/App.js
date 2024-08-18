@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Aside } from "./components/Aside";
 import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
 import { Shopping } from "./components/Shopping";
+import data from './data.json';
 
 const App = () => {
   const [activeSize, setActiveSize] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("");
+  // const [products, setProducts] = useState("")
+
+  // useEffect(() => {
+  //   setProducts(data)
+  // }, [data])
 
   const handleAddItemsToCart = (item) => {
     const addedCart = cartItems.find((pro) => pro.id === item.id);
@@ -65,7 +71,7 @@ const App = () => {
     <>
       <Header handleCartOpen={handleCartOpen} cartItems={cartItems}
    />
-      <div className="w-full mx-auto mt-16  px-2 py-6 bg-[#e9e6e6] flex justify-between flex-col md:flex-row">
+      <div className={`w-full mx-auto mt-16  px-2 py-6 bg-[#e9e6e6] flex justify-between flex-col md:flex-row ${isCartOpen ? "opacity-50" : ""} `}>
         <Aside activeSize={activeSize} handleActiveSize={handleActiveSize} 
             setActiveFilter={setActiveFilter}/>
         <Shopping
@@ -74,6 +80,7 @@ const App = () => {
           cartItems={cartItems}
           handleAddItemsToCart={handleAddItemsToCart}
           activeFilter={activeFilter}
+          data={data}
         />
       </div>
       <Cart

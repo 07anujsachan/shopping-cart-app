@@ -9,7 +9,7 @@ export const Cart = ({
   handleIncrement,
 }) => {
   const handleSubmit = (totalBill) => {
-    alert(`Your total bill is $${totalBill}`);
+    alert(`Your total bill is $${totalBill}`)
   };
 
   const totalBill = cartItems.reduce(
@@ -19,7 +19,7 @@ export const Cart = ({
 
   return (
     <div
-      className={`bg-white md:w-1/3 lg:w-1/3 w-full p-4 fixed top-0 right-0 h-screen z-50 ${
+      className={`bg-white shadow-2xl md:w-1/3 lg:w-1/3 w-full p-4 fixed top-0 right-0 h-screen z-50 ${
         isCartOpen ? "block" : "hidden"
       }`}
     >
