@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
 export const Aside = ({ activeSize, handleActiveSize, setActiveFilter }) => {
@@ -10,8 +9,11 @@ export const Aside = ({ activeSize, handleActiveSize, setActiveFilter }) => {
     setActiveFilter(e.target.value);
   };
   return (
-    <div className="w-1/4 pt-24">
-      <h2 className="size">Sizes-</h2>
+    <div className="w-1/4 pt-24  bg-white shadow-2xl">
+      <div className="px-6">
+
+    
+      <h2 className="size text-xl  text-blue-600">Sizes-</h2>
 
       {sizes.map((size) => (
         <button
@@ -26,10 +28,11 @@ export const Aside = ({ activeSize, handleActiveSize, setActiveFilter }) => {
           {size}
         </button>
       ))}
-      <div>
-        <span>Filter by:</span>
-        <select onChange={handleFilterChange} value={filter}>
-          <option value="">Select</option>
+        </div>
+      <div className="mt-8">
+        <div className="text-xl text-blue-600 px-5">More Filters</div>
+        <select onChange={handleFilterChange} value={filter} className="w-full  border mt-4 py-4 px-6">
+          <option value="">Price</option>
           <option value="lowesttohighest">Low to High</option>
           <option value="highesttolowest">High to Low</option>
         </select>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Aside } from "./components/Aside";
-import { Shopping } from "./components/Shopping";
 import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
+import { Shopping } from "./components/Shopping";
 
 const App = () => {
   const [activeSize, setActiveSize] = useState([]);
@@ -64,7 +64,7 @@ const App = () => {
     <>
       <Header handleCartOpen={handleCartOpen} cartItems={cartItems}
    />
-      <div className="max-w-[1700px] w-full mx-auto p-8 bg-[#f3f7fa] flex justify-between">
+      <div className="w-full mx-auto mt-16  px-2 py-6 bg-[#e9e6e6] flex justify-between">
         <Aside activeSize={activeSize} handleActiveSize={handleActiveSize} 
             setActiveFilter={setActiveFilter}/>
         <Shopping
