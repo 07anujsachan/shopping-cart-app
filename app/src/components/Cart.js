@@ -19,18 +19,18 @@ export const Cart = ({
 
   return (
     <div
-      className={`bg-[#1b1a20] w-full p-4 fixed top-0 right-0 h-screen z-50 ${
+      className={`bg-white md:w-1/3 lg:w-1/3 w-full p-4 fixed top-0 right-0 h-screen z-50 ${
         isCartOpen ? "block" : "hidden"
       }`}
     >
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <img src="/products/bag-icon.png" alt="Cart Icon" className="w-8" />
-          <span className="text-white text-3xl font-semibold ml-4">Cart</span>
+          <span className="text-[#212121] text-3xl font-semibold ml-4">Cart</span>
         </div>
         <button
           onClick={handleCartClose}
-          className="text-white text-2xl focus:outline-none"
+          className="text-[#212121] text-2xl focus:outline-none"
         >
           ×
         </button>
@@ -38,22 +38,22 @@ export const Cart = ({
       <div className="overflow-y-scroll h-[60%] mt-8">
         {cartItems.map((item) => (
           <div
-            className="flex justify-between w-full mx-auto my-4 h-40 py-4 border-t-2 border-b-2"
+            className="flex justify-between w-full mx-auto my-4 h-44 py-4 border-t-2 border-b-2"
             key={item.id}
           >
             <div className="flex-shrink-0 w-1/4">
               <img
-                className="h-full w-full object-cover"
+                className="h-full w-full "
                 src={`/products/${item.sku}_2.jpg`}
                 alt={item.title}
               />
             </div>
             <div className="w-1/2 h-full pl-4">
-              <h2 className="text-[#ececec] text-lg">{item.title}</h2>
-              <h3 className="text-[#5b5a5e] md:text-xl text-sm mt-3">
+              <h2 className="text-[#212121] text-lg">{item.title}</h2>
+              <h3 className="text-gray-400 md:text-xl text-sm mt-3">
                 {`${item.availableSizes[0]} | ${item.style}`}
               </h3>
-              <h3 className="text-[#5b5a5e] text-xl">
+              <h3 className="text-[#757576] text-xl">
                 Quantity: {item.quantity}
               </h3>
             </div>

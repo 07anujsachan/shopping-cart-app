@@ -40,14 +40,14 @@ export const Shopping = ({
 
   return (
     <>
-      <div className="w-[74%] overflow-auto">
+      <div className="md:w-[74%] w-full">
         <div className="bg-white py-10">
           <div className="flex between mb-12 pl-10 underline">
             <span className="text-blue-600">{`⁠${products.length} products found`}</span>
           </div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-4">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-4 px-4 md:px-0">
             {products.map((product) => (
-              <div className="group h-max hover:shadow-xl mb-8" key={product.sku}>
+              <div className="group h-max hover:shadow-2xl border md:border-none shadow-xl mb-8" key={product.sku}>
                 <figure className="relative">
                   <img
                     className="w-full"

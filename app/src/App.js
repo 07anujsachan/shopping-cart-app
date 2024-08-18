@@ -20,6 +20,7 @@ const App = () => {
         { ...item, quantity: 1 },
       ]);
     }
+    handleCartOpen()
   };
 
   const handleActiveSize = (size) => {
@@ -64,7 +65,7 @@ const App = () => {
     <>
       <Header handleCartOpen={handleCartOpen} cartItems={cartItems}
    />
-      <div className="w-full mx-auto mt-16  px-2 py-6 bg-[#e9e6e6] flex justify-between">
+      <div className="w-full mx-auto mt-16  px-2 py-6 bg-[#e9e6e6] flex justify-between flex-col md:flex-row">
         <Aside activeSize={activeSize} handleActiveSize={handleActiveSize} 
             setActiveFilter={setActiveFilter}/>
         <Shopping

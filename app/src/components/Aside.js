@@ -9,7 +9,7 @@ export const Aside = ({ activeSize, handleActiveSize, setActiveFilter }) => {
     setActiveFilter(e.target.value);
   };
   return (
-    <div className="w-1/4 pt-24  bg-white shadow-2xl">
+    <div className="md:w-1/4 w-full mb-8 md:mb-0 md:pt-24 pt-8 md:pb-0 pb-8 bg-white shadow-2xl">
       <div className="px-6">
 
     
