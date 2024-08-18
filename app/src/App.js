@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Aside } from "./components/Aside";
 import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
 import { Shopping } from "./components/Shopping";
-import data from './data.json';
+import data from "./data.json";
 
 const App = () => {
   const [activeSize, setActiveSize] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("");
-  // const [products, setProducts] = useState("")
-
-  // useEffect(() => {
-  //   setProducts(data)
-  // }, [data])
 
   const handleAddItemsToCart = (item) => {
     const addedCart = cartItems.find((pro) => pro.id === item.id);
@@ -26,12 +21,14 @@ const App = () => {
         { ...item, quantity: 1 },
       ]);
     }
-    handleCartOpen()
+    handleCartOpen();
   };
 
   const handleActiveSize = (size) => {
     if (activeSize.includes(size)) {
-      setActiveSize((prevActiveSize) => prevActiveSize.filter((s) => s !== size));
+      setActiveSize((prevActiveSize) =>
+        prevActiveSize.filter((s) => s !== size)
+      );
     } else {
       setActiveSize((prevActiveSize) => [...prevActiveSize, size]);
     }
@@ -42,7 +39,7 @@ const App = () => {
   };
 
   const handleIncrement = (id) => {
-    setCartItems((prevCartItems) => 
+    setCartItems((prevCartItems) =>
       prevCartItems.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
@@ -50,15 +47,19 @@ const App = () => {
   };
 
   const handleDecrement = (id) => {
-    setCartItems((prevCartItems) => 
+    setCartItems((prevCartItems) =>
       prevCartItems.map((item) =>
-        item.id === id ? (item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : deleteCartItem(item.id)) : item
+        item.id === id
+          ? item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : deleteCartItem(item.id)
+          : item
       )
     );
   };
 
   const deleteCartItem = (id) => {
-    setCartItems((prevCartItems) => 
+    setCartItems((prevCartItems) =>
       prevCartItems.filter((item) => item.id !== id)
     );
   };
@@ -69,11 +70,17 @@ const App = () => {
 
   return (
     <>
-      <Header handleCartOpen={handleCartOpen} cartItems={cartItems}
-   />
-      <div className={`w-full mx-auto mt-16  px-2 py-6 bg-[#e9e6e6] flex justify-between flex-col md:flex-row ${isCartOpen ? "opacity-50" : ""} `}>
-        <Aside activeSize={activeSize} handleActiveSize={handleActiveSize} 
-            setActiveFilter={setActiveFilter}/>
+      <Header handleCartOpen={handleCartOpen} cartItems={cartItems} />
+      <div
+        className={`w-full mx-auto mt-16  px-2 py-6 bg-[#e9e6e6] flex justify-between flex-col md:flex-row ${
+          isCartOpen ? "opacity-50" : ""
+        } `}
+      >
+        <Aside
+          activeSize={activeSize}
+          handleActiveSize={handleActiveSize}
+          setActiveFilter={setActiveFilter}
+        />
         <Shopping
           activeSize={activeSize}
           handleCartOpen={handleCartOpen}

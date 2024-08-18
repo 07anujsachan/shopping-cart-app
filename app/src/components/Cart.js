@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const Cart = ({
   cartItems,
@@ -8,6 +8,25 @@ export const Cart = ({
   handleDecrement,
   handleIncrement,
 }) => {
+  const [discountApplied, setDiscountApplied] = useState("");
+  const [discountAmount, setDiscountAmount] = useState(0)
+
+  const applyDiscount = (discountType) =>{
+    setDiscountApplied(discountType === discountApplied ? "" : discountType)
+  }
+const calculateDiscount = (type) =>{
+
+
+if (type === "fixed") {
+  setDiscountAmount(10)
+} else if (type === "percent") {
+  setDiscountAmount((totalBill * 10) / 100);
+}
+
+}
+useEffect(()=>{
+  calculateDiscount(discountApplied)
+}, [discountApplied])
   const handleSubmit = (totalBill) => {
     alert(`Your total bill is $${totalBill}`)
   };
@@ -35,7 +54,7 @@ export const Cart = ({
           ×
         </button>
       </div>
-      <div className="overflow-y-scroll h-[60%] mt-8">
+      <div className="overflow-y-scroll h-[48%] mt-8">
         {cartItems.map((item) => (
           <div
             className="flex justify-between w-full mx-auto my-4 h-44 py-4 border-t-2 border-b-2"
@@ -87,19 +106,62 @@ export const Cart = ({
         ))}
       </div>
 
-      <div className="w-full border-t-2 pt-8 mt-8">
-        <div className="flex justify-between">
-          <h2 className="text-[#5b5a5e] text-2xl uppercase">Subtotal</h2>
+      <div className="w-full border-t-2 pt-4 mt-8">
+        <div className="border-b-2 pb-4">
+        <h2 className="text-[#5b5a5e] text-xl mb-2 ">Discounts Available</h2>
+        <div className="w-full text-blue-600">
+        <div>
+        <input
+        id="fixed"
+          type="checkbox"
+          checked={discountApplied === "fixed"}
+          onChange={() => applyDiscount("fixed")}
+        />
+      <label for="fixed" className="ml-2">
+        Flat $10 off on total cart value
+      </label>
+      </div>
+      <div>
+
+        <input
+        id="percent"
+          type="checkbox"
+          checked={discountApplied === "percent"}
+          onChange={() => applyDiscount("percent")}
+        />
+      <label for="percent" className="ml-2">
+        10% off on total cart value
+      </label>
+      </div>
+    </div>
+        </div>
+        <div className="flex justify-between pt-4">
+          <h2 className="text-[#5b5a5e] text-base uppercase">{`price (${cartItems.length} items)`}</h2>
           <div>
             <h3 className="text-[#eac000] text-lg">${totalBill.toFixed(2)}</h3>
-            <h3 className="text-[#5b5a5e]">
-              or 4 X ${(totalBill / 4).toFixed(2)}
-            </h3>
+            
           </div>
+          
+        </div>
+        <div className="flex justify-between mt-2">
+          <h2 className="text-[#5b5a5e] text-base uppercase">Discount</h2>
+          <div>
+            <h3 className="text-green-500 text-lg">{`-$${discountAmount}`}</h3>
+            
+          </div>
+          
+        </div>
+        <div className="flex justify-between mt-2">
+          <h2 className="text-[#5b5a5e] text-base uppercase">Amount Payable</h2>
+          <div>
+            <h3 className="text-[#eac000] font-bold text-lg">${totalBill - discountAmount}</h3>
+            
+          </div>
+          
         </div>
         <button
           className="bg-black text-center w-full mt-4 py-4 text-white text-xl focus:outline-none"
-          onClick={() => handleSubmit(totalBill)}
+          onClick={() => handleSubmit(totalBill - discountAmount)}
           type="submit"
         >
           Checkout
